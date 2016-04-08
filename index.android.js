@@ -18,7 +18,6 @@ import React, {
 import TorridArtIndex from './trIndex';
 import TorridArtPreview from './trPreview';
 
-import FirstPageComponent from './FirstPageComponent';
 
 var apiUrl = require('./settings').apiUrl;
 
