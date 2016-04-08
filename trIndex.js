@@ -146,8 +146,8 @@ export default class TorridArtIndex extends React.Component {
     );
   }
 
-  _onPressButton() {
-    Alert.alert('','1');
+  _onPressButton(name) {
+    Alert.alert('',name);
     const { navigator } = this.props;
     //为什么这里可以取得 props.navigator?请看上文:
     //<Component {...route.params} navigator={navigator} />
@@ -156,6 +156,9 @@ export default class TorridArtIndex extends React.Component {
       navigator.push({
         name: 'TorridArtPreview',
         component: TorridArtPreview,
+        params: {
+          id: 'aaa'
+        }
       });
     }
   }
@@ -164,7 +167,7 @@ export default class TorridArtIndex extends React.Component {
     //var self = this;
     return (
       <View>
-        <TouchableOpacity onPress={this._onPressButton.bind(this)}>
+        <TouchableOpacity onPress={()=>this._onPressButton(collection.name)}>
           <Image
             source={{uri: collection.preview}}
             style={styles.preview}

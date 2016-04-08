@@ -24,6 +24,14 @@ export default class TorridArtPreview extends React.Component {
     this.state = {};
   }
 
+  componentDidMount() {
+    //Alert.alert(this.props.id);
+    //这里获取从FirstPageComponent传递过来的参数: id
+    this.setState({
+      id: this.props.id
+    });
+  }
+
   _pressButton() {
         const { navigator } = this.props;
         if(navigator) {
@@ -42,9 +50,9 @@ export default class TorridArtPreview extends React.Component {
         </View>
         <View>
           <Image
-            source={{uri: 'http://192.168.1.100:3002/thumbnail/2012-12-03 No.753 Sara/0003_P1cEFnyn.jpg'}}
+            source={{uri: 'http://192.168.1.100:3002/preview/2012-12-03 No.753 Sara/0003_P1cEFnyn.jpg'}}
             style={styles.preview}
-            resizeMode={Image.resizeMode.stretch}
+            resizeMode={Image.resizeMode.cover}
           />
         </View>
       </View>
