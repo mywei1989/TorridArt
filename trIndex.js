@@ -146,18 +146,16 @@ export default class TorridArtIndex extends React.Component {
     );
   }
 
-  _onPressButton(name) {
-    Alert.alert('',name);
+  _onPressButton(collectionName,name,webPath) {
     const { navigator } = this.props;
-    //为什么这里可以取得 props.navigator?请看上文:
-    //<Component {...route.params} navigator={navigator} />
-    //这里传递了navigator作为props
     if(navigator) {
       navigator.push({
         name: 'TorridArtPreview',
         component: TorridArtPreview,
         params: {
-          id: 'aaa'
+          collectionName: collectionName,
+          name:name,
+          webPath:webPath
         }
       });
     }
@@ -167,7 +165,7 @@ export default class TorridArtIndex extends React.Component {
     //var self = this;
     return (
       <View>
-        <TouchableOpacity onPress={()=>this._onPressButton(collection.name)}>
+        <TouchableOpacity onPress={()=>this._onPressButton(collection.collectionName,collection.name,collection.webPath)}>
           <Image
             source={{uri: collection.preview}}
             style={styles.preview}
@@ -180,9 +178,7 @@ export default class TorridArtIndex extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    height:Dimensions.get('window').height-PixelRatio.getPixelSizeForLayoutSize(12),
-    //justifyContent: 'center',
-    //alignItems: 'center',
+    height:Dimensions.get('window').height,
     backgroundColor: '#4d4d65'
   },
   title:{
@@ -194,7 +190,6 @@ const styles = StyleSheet.create({
   titleText:{
     textAlign:'center',
     textAlignVertical:'center',
-    //textAlign:'justify',
     fontSize:18,
     fontWeight:'bold',
     color:'#fff'
@@ -203,13 +198,11 @@ const styles = StyleSheet.create({
   contentContainer: {
     backgroundColor:"#4d4d65",
     flexDirection: 'row',
-    //justifyContent:'space-between',
     flexWrap:'wrap',
   },
   preview:{
     marginTop:1,
     width:Dimensions.get('window').width*0.33,
     height:(Dimensions.get('window').height-PixelRatio.getPixelSizeForLayoutSize(20))/3
-    //height:500
   }
 });

@@ -21,40 +21,54 @@ var apiUrl = require('./settings').apiUrl;
 export default class TorridArtPreview extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      loaded: false
+    };
   }
 
   componentDidMount() {
-    //Alert.alert(this.props.id);
-    //这里获取从FirstPageComponent传递过来的参数: id
+    //Alert.alert(this.props.collectionName);
     this.setState({
-      id: this.props.id
+      loaded:true,
+      collectionName: this.props.collectionName,
+      name:this.props.name,
+      webPath:this.props.webPath,
+      preview:this.props.webPath+'/preview/'+this.props.collectionName+'/'+this.props.name
     });
   }
 
   _pressButton() {
-        const { navigator } = this.props;
-        if(navigator) {
-            //很熟悉吧，入栈出栈~ 把当前的页面pop掉，这里就返回到了上一个页面:FirstPageComponent了
-            navigator.pop();
-        }
+    const { navigator } = this.props;
+    if(navigator) {
+      navigator.pop();
     }
+  }
 
   render(){
+    //Alert.alert('aa',this.state.preview);
+    if (!this.state.loaded) {
+      return this.renderLoadingView();
+    }
     return (
       <View style={styles.container}>
-        <View style={styles.title}>
-          <Text style={styles.titleText}>
-            每日看胸{require('./settings').apiUrl}
-          </Text> 
-        </View>
         <View>
           <Image
-            source={{uri: 'http://192.168.1.100:3002/preview/2012-12-03 No.753 Sara/0003_P1cEFnyn.jpg'}}
+            source={{uri: this.state.preview}}
             style={styles.preview}
-            resizeMode={Image.resizeMode.cover}
+            resizeMode={Image.resizeMode.contain}
           />
         </View>
+      </View>
+    );
+  }
+
+
+  renderLoadingView() {
+    return (
+      <View style={styles.container}>
+        <Text>
+          正在加载每日看胸数据……
+        </Text>
       </View>
     );
   }
@@ -63,7 +77,7 @@ export default class TorridArtPreview extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    height:Dimensions.get('window').height-PixelRatio.getPixelSizeForLayoutSize(12),
+    height:Dimensions.get('window').height,
     //justifyContent: 'center',
     //alignItems: 'center',
     backgroundColor: '#4d4d65'
@@ -92,7 +106,7 @@ const styles = StyleSheet.create({
   preview:{
     marginTop:1,
     width:Dimensions.get('window').width,
-    height:(Dimensions.get('window').height-PixelRatio.getPixelSizeForLayoutSize(0))
+    height:Dimensions.get('window').height-PixelRatio.getPixelSizeForLayoutSize(30)
     //height:500
   }
 });
