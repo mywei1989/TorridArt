@@ -78,33 +78,11 @@ export default class TorridArtPreview extends React.Component {
 const styles = StyleSheet.create({
   container: {
     height:Dimensions.get('window').height,
-    //justifyContent: 'center',
-    //alignItems: 'center',
     backgroundColor: '#4d4d65'
   },
-  title:{
-    height: PixelRatio.getPixelSizeForLayoutSize(20),
-    alignItems: 'center', 
-    justifyContent: 'center',
-    backgroundColor:'#f69dad'
-  },
-  titleText:{
-    textAlign:'center',
-    textAlignVertical:'center',
-    //textAlign:'justify',
-    fontSize:18,
-    fontWeight:'bold',
-    color:'#fff'
-  },
 
-  contentContainer: {
-    backgroundColor:"#4d4d65",
-    flexDirection: 'row',
-    //justifyContent:'space-between',
-    flexWrap:'wrap',
-  },
   preview:{
-    marginTop:1,
+    marginTop:PixelRatio.getPixelSizeForLayoutSize(12),
     width:Dimensions.get('window').width,
     height:Dimensions.get('window').height-PixelRatio.getPixelSizeForLayoutSize(30)
     //height:500
