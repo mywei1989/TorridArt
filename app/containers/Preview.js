@@ -12,13 +12,10 @@ import React, {
   RefreshControl,
   Alert,
   Navigator,
-  TouchableOpacity
+  TouchableWithoutFeedback,
 } from 'react-native';
 
-var apiUrl = require('./settings').apiUrl;
-
-
-export default class TorridArtPreview extends React.Component {
+class Preview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -27,41 +24,39 @@ export default class TorridArtPreview extends React.Component {
   }
 
   componentDidMount() {
-    //Alert.alert(this.props.collectionName);
     this.setState({
       loaded:true,
       collectionName: this.props.collectionName,
       name:this.props.name,
-      webPath:this.props.webPath,
-      preview:this.props.webPath+'/preview/'+this.props.collectionName+'/'+this.props.name
+      preview:this.props.preview
     });
   }
 
-  _pressButton() {
-    const { navigator } = this.props;
+  _onBackClick(){
+    const {navigator} = this.props;
     if(navigator) {
       navigator.pop();
     }
   }
 
   render(){
-    Alert.alert('aa',this.state.preview);
     if (!this.state.loaded) {
       return this.renderLoadingView();
     }
     return (
       <View style={styles.container}>
         <View>
-          <Image
-            source={{uri: this.state.preview}}
-            style={styles.preview}
-            resizeMode={Image.resizeMode.contain}
-          />
+          <TouchableWithoutFeedback onPress={()=>this._onBackClick()}>
+            <Image
+              source={{uri: this.state.preview}}
+              style={styles.preview}
+              resizeMode={Image.resizeMode.contain}
+            />
+          </TouchableWithoutFeedback>
         </View>
       </View>
     );
   }
-
 
   renderLoadingView() {
     return (
@@ -73,6 +68,7 @@ export default class TorridArtPreview extends React.Component {
     );
   }
 }
+
 
 
 const styles = StyleSheet.create({
@@ -88,3 +84,5 @@ const styles = StyleSheet.create({
     //height:500
   }
 });
+
+export{ Preview as default };

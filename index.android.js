@@ -1,4 +1,10 @@
-'use strict';
+import React, {AppRegistry} from 'react-native';
+import Launcher from './app/Launcher';
+AppRegistry.registerComponent('TorridArt', () => Launcher);
+
+
+
+/*'use strict';
 import React, {
   AppRegistry,
   Component,
@@ -40,5 +46,5 @@ class TorridArt extends Component {
 }
 
 
-AppRegistry.registerComponent('TorridArt', () => TorridArt);
+AppRegistry.registerComponent('TorridArt', () => TorridArt);*/
 
