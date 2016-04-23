@@ -45,7 +45,7 @@ export default class TorridArtPreview extends React.Component {
   }
 
   render(){
-    //Alert.alert('aa',this.state.preview);
+    Alert.alert('aa',this.state.preview);
     if (!this.state.loaded) {
       return this.renderLoadingView();
     }
