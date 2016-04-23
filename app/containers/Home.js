@@ -14,7 +14,9 @@ import React, {
   Navigator,
   TouchableOpacity,
   Animated,
-  Easing
+  Easing,
+  Platform,
+  StatusBar
 } from 'react-native';
 
 import {connect} from 'react-redux';
@@ -86,6 +88,11 @@ class Home extends React.Component {
   renderThumbnailCollections(dataRow,sectionID,rowID){
     return (
        <View>
+         <StatusBar
+           backgroundColor="blue"
+           barStyle="light-content"
+           hidden={true}
+         />
         <TouchableOpacity onPress={()=>this._onPressButton(this.props,dataRow.collectionName,dataRow.name,dataRow.preview)}>
           <Image
             source={{uri: dataRow.thumbnail}}
@@ -109,6 +116,8 @@ class Home extends React.Component {
     );
   }
 }
+
+
 
 const styles = StyleSheet.create({
   container: {
@@ -137,7 +146,7 @@ const styles = StyleSheet.create({
   thumbnail:{
     marginTop:1,
     width:Dimensions.get('window').width*0.33,
-    height:(Dimensions.get('window').height-PixelRatio.getPixelSizeForLayoutSize(20))/3
+    height:(Dimensions.get('window').height-PixelRatio.getPixelSizeForLayoutSize(20))/3-1
   }
 });
 
