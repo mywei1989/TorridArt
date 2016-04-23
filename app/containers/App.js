@@ -21,6 +21,7 @@ class App extends Component {
        return <Component {...route.params} navigator={navigator} />
      }} />
     );
+
   }
 }
 
