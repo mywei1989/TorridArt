@@ -76,6 +76,7 @@ class Home extends React.Component {
     let dataSource = this.state.dataSource.cloneWithRows(homeReducers.thumbnail);
     return (
       <ListView 
+        enableEmptySections={true}
         dataSource={dataSource}
         renderRow={this.renderThumbnailCollections.bind(this)}
         onEndReachedThreshold={20}
@@ -88,11 +89,6 @@ class Home extends React.Component {
   renderThumbnailCollections(dataRow,sectionID,rowID){
     return (
        <View>
-         <StatusBar
-           backgroundColor="blue"
-           barStyle="light-content"
-           hidden={true}
-         />
         <TouchableOpacity onPress={()=>this._onPressButton(this.props,dataRow.collectionName,dataRow.name,dataRow.preview)}>
           <Image
             source={{uri: dataRow.thumbnail}}
@@ -106,6 +102,11 @@ class Home extends React.Component {
   render() {
     return (
       <View style={styles.container}>
+        <StatusBar
+           backgroundColor="blue"
+           barStyle="light-content"
+           hidden={true}
+         />
         <View style={styles.title}>
           <Text style={styles.titleText}>
             每日看胸
