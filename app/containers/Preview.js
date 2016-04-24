@@ -78,9 +78,9 @@ const styles = StyleSheet.create({
   },
 
   preview:{
-    marginTop:PixelRatio.getPixelSizeForLayoutSize(12),
+    //marginTop:PixelRatio.getPixelSizeForLayoutSize(12),
     width:Dimensions.get('window').width,
-    height:Dimensions.get('window').height-PixelRatio.getPixelSizeForLayoutSize(30)
+    height:Dimensions.get('window').height//-PixelRatio.getPixelSizeForLayoutSize(30)
     //height:500
   }
 });

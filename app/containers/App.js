@@ -13,13 +13,13 @@ class App extends Component {
     let name = 'Home';
     let home = Home;
     return (
-    <Navigator
-     initialRoute={{ name: name, component: home }}
-     configureScene={(route, routeStack) => Navigator.SceneConfigs.FloatFromRight}
-     renderScene={(route, navigator) => {
-       let Component = route.component;
-       return <Component {...route.params} navigator={navigator} />
-     }} />
+        <Navigator
+         initialRoute={{name: name, component: home }}
+         configureScene={(route, routeStack) => Navigator.SceneConfigs.FloatFromRight}
+         renderScene={(route, navigator) => {
+           let Component = route.component;
+           return <Component {...route.params} navigator={navigator} />
+         }} />
     );
 
   }
