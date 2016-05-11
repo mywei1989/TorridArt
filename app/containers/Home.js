@@ -90,7 +90,8 @@ class Home extends React.Component {
   renderThumbnailCollections(dataRow,sectionID,rowID){
     return (
        <View>
-        <Lightbox underlayColor="white" navigator={this.props.navigator}>
+        <Lightbox underlayColor="white" navigator={this.props.navigator} 
+        renderContent={()=>this.renderPreview(dataRow.preview)}>
           <Image
             source={{uri: dataRow.thumbnail}}
             style={styles.thumbnail}
@@ -99,6 +100,19 @@ class Home extends React.Component {
       </View>
     )
   }
+
+  renderPreview(preview){
+    return (
+       <View>
+          <Image
+          resizeMode="contain"
+            source={{uri: preview}}
+            style={styles.preview}
+          />
+      </View>
+    )
+  }
+
   renderThumbnailCollections2(dataRow,sectionID,rowID){
     return (
        <View>
@@ -161,6 +175,10 @@ const styles = StyleSheet.create({
     marginTop:1,
     width:Dimensions.get('window').width*0.33,
     height:(Dimensions.get('window').height-PixelRatio.getPixelSizeForLayoutSize(20))/3-1
+  },
+  preview:{
+    width:Dimensions.get('window').width,
+    height:Dimensions.get('window').height//-PixelRatio.getPixelSizeForLayoutSize(30)
   }
 });
 

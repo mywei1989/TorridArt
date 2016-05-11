@@ -4,6 +4,9 @@ import React, {
 } from 'react-native';
 
 import Home from './Home';
+
+
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -14,11 +17,11 @@ class App extends Component {
     let home = Home;
     return (
         <Navigator
-         initialRoute={{name: name, component: home }}
+         initialRoute={{name: name, component: home}}
          configureScene={(route, routeStack) => Navigator.SceneConfigs.FloatFromRight}
          renderScene={(route, navigator) => {
            let Component = route.component;
-           return <Component {...route.params} navigator={navigator} />
+           return <Component route={route} {...route.passProps} navigator={navigator} />
          }} />
     );
 
