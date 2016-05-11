@@ -19,6 +19,8 @@ import React, {
   StatusBar
 } from 'react-native';
 
+var Lightbox = require('react-native-lightbox');
+
 import {connect} from 'react-redux';
 import {fetchTorridArt} from '../actions/homeAction';
 
@@ -85,8 +87,19 @@ class Home extends React.Component {
     );
   }
 
-
   renderThumbnailCollections(dataRow,sectionID,rowID){
+    return (
+       <View>
+        <Lightbox underlayColor="white" navigator={this.props.navigator}>
+          <Image
+            source={{uri: dataRow.thumbnail}}
+            style={styles.thumbnail}
+          />
+        </Lightbox>
+      </View>
+    )
+  }
+  renderThumbnailCollections2(dataRow,sectionID,rowID){
     return (
        <View>
         <TouchableOpacity onPress={()=>this._onPressButton(this.props,dataRow.collectionName,dataRow.name,dataRow.preview)}>
